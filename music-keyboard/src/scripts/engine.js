@@ -1,19 +1,52 @@
 const pianoKeys = document.querySelectorAll(".piano-keys .key");
 const volumeSlider = document.querySelector(".volume-slider input");
 const keysCheck = document.querySelector(".keys-check input");
+const temaToggle = document.getElementById("temaToggle");
 
-let mapedKeys = [];
-let audio = new Audio("src/tunes/a.wav");
+// 🎵 Sequência pré-definida de notas
+const sequencia = ["a", "s", "d", "f", "g", "h", "j", "k"];
+const tempoEntreNotas = 400;
+
+const sequenciaBtn = document.createElement("button");
+sequenciaBtn.textContent = "Tocar Sequência";
+sequenciaBtn.id = "sequenciaBtn";
+document.querySelector("header").appendChild(sequenciaBtn);
+
+const mapedKeys = [];
+const notas = {
+  a: "C", w: "C#", s: "D", e: "D#", d: "E", f: "F",
+  t: "F#", g: "G", y: "G#", h: "A", u: "A#", j: "B",
+  k: "C2", o: "C#2", l: "D2", p: "D#2", ";": "E2"
+};
 
 const playTune = (key) => {
-  audio.src = `src/tunes/${key}.wav`;
+  const audio = new Audio(`src/tunes/${key}.wav`);
+  audio.volume = volumeSlider.value;
   audio.play();
 
   const clickedKey = document.querySelector(`[data-key="${key}"]`);
-  clickedKey.classList.add("active");
-  setTimeout(() => {
-    clickedKey.classList.remove("active");
-  }, 150);
+  if (clickedKey) {
+    clickedKey.classList.add("active");
+    if (notas[key]) {
+      clickedKey.setAttribute("title", notas[key]);
+    }
+    setTimeout(() => clickedKey.classList.remove("active"), 150);
+  }
+
+  historicoNotas.push({
+    nota: notas[key] || key,
+    tecla: key,
+    tempo: Date.now()
+  });
+};
+
+// Tocando a sequência automática
+const tocarSequencia = () => {
+  sequencia.forEach((key, index) => {
+    setTimeout(() => {
+      playTune(key);
+    }, tempoEntreNotas * index);
+  });
 };
 
 pianoKeys.forEach((key) => {
@@ -21,20 +54,44 @@ pianoKeys.forEach((key) => {
   mapedKeys.push(key.dataset.key);
 });
 
+const pressedKeys = new Set();
+
 document.addEventListener("keydown", (e) => {
-  if (mapedKeys.includes(e.key)) {
+  if (!pressedKeys.has(e.key) && mapedKeys.includes(e.key)) {
+    pressedKeys.add(e.key);
     playTune(e.key);
   }
 });
 
-const handleVolume = (e) => {
-  audio.volume = e.target.value;
-};
+document.addEventListener("keyup", (e) => {
+  pressedKeys.delete(e.key);
+});
 
-const showHideKeys = () => {
+volumeSlider.addEventListener("input", (e) => {
+});
+
+keysCheck.addEventListener("click", () => {
   pianoKeys.forEach((key) => key.classList.toggle("hide"));
-};
+});
 
-volumeSlider.addEventListener("input", handleVolume);
+temaToggle.addEventListener("click", () => {
+  document.body.classList.toggle("claro");
+});
 
-keysCheck.addEventListener("click", showHideKeys);
+function gerarSequenciaAleatoria(tamanho) {
+  const aleatoria = [];
+  for (let i = 0; i < tamanho; i++) {
+    const indice = Math.floor(Math.random() * mapedKeys.length);
+    aleatoria.push(mapedKeys[indice]);
+  }
+  return aleatoria;
+}
+sequenciaBtn.addEventListener("click", () => {
+  const sequenciaAleatoria = gerarSequenciaAleatoria(Math.random() * 5 + 5);
+  sequenciaAleatoria.forEach((key, index) => {
+    setTimeout(() => {
+      playTune(key);
+    }, tempoEntreNotas * index);
+  });
+}
+);

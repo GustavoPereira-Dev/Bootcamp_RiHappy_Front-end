@@ -14,14 +14,14 @@ body {
   justify-content: center;
   align-items: center;
   gap: 30px;
-  background: linear-gradient(
-    325deg,
-    #03001e 0%,
-    #7303c0 30%,
-    #ec38bc 70%,
-    #fdeff9 100%
-  );
+  background: linear-gradient(325deg, #03001e 0%, #7303c0 30%, #ec38bc 70%, #fdeff9 100%);
   padding: 40px 60px;
+}
+
+.stats p {
+  color: white;
+  font-size: 1.2em;
+  margin: 5px;
 }
 
 h2 {
@@ -67,7 +67,6 @@ h2 {
   align-items: center;
   justify-content: center;
   background-color: #fff;
-
   font-size: 3em;
   transform: rotateY(180deg);
   transition: 0.25s;
@@ -78,7 +77,6 @@ h2 {
   position: absolute;
   inset: 0;
   background: #404040;
-  /* opacity: 0.85; */
   transition: 0.25s;
   transform: rotateY(0deg);
   backface-visibility: hidden;
@@ -92,3 +90,37 @@ h2 {
 .boxMatch::after {
   transform: rotateY(180deg);
 }
+
+.dificuldades {
+  display: flex;
+  gap: 10px;
+}
+
+.modo {
+  padding: 10px 20px;
+  background-color: #fff;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.modo:hover {
+  background-color: #fdeff9;
+}
+
+@media (max-width: 500px) {
+  .game {
+    width: 300px;
+    height: 300px;
+  }
+
+  .item {
+    width: 70px;
+    height: 70px;
+    font-size: 2em;
+  }
+}
+

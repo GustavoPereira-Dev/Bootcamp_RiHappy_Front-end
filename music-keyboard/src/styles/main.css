@@ -1,43 +1,70 @@
 body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #e3f2fd;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #e3f2fd;
-  color: #fff;
+  transition: background 0.3s ease, color 0.3s ease;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+body.claro {
+  background-color: #f8f8f8;
+  color: #000;
 }
 
 .container {
-  width: 780px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: #111;
+  color: #fff;
+  padding: 30px;
   border-radius: 20px;
-  padding: 35px 40px;
-  background-color: black;
+  box-sizing: border-box;
 }
 
-.container header {
-  color: #b2b2b2;
+body.claro .container {
+  background-color: #fff;
+  color: #000;
+}
+
+header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 25px;
 }
 
 header h2 {
   font-size: 1.6rem;
+  flex: 1 1 auto;
+  min-width: 120px;
 }
 
-header .column {
+.column {
   display: flex;
   align-items: center;
+  flex: 1 1 auto;
+  min-width: 120px;
+  gap: 10px;
 }
 
-header .column span {
+.column span {
   font-weight: 500;
-  margin-right: 15px;
-  font-size: 1.19rem;
+  font-size: 1.2rem;
+  color: inherit;
 }
 
-.volume-slider input {
-  accent-color: #fff;
+.volume-slider input,
+.keys-check input {
+  accent-color: inherit;
+  cursor: pointer;
 }
 
 .keys-check input {
@@ -46,8 +73,12 @@ header .column span {
   appearance: none;
   border-radius: 30px;
   background-color: #4b4b4b;
-  cursor: pointer;
   position: relative;
+  transition: background 0.3s ease;
+}
+
+body.claro .keys-check input {
+  background-color: #ccc;
 }
 
 .keys-check input::before {
@@ -68,55 +99,100 @@ header .column span {
   background-color: #fff;
 }
 
+#temaToggle,
+#sequenciaBtn {
+  background-color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+body.claro #temaToggle,
+body.claro #sequenciaBtn {
+  background-color: #333;
+  color: #fff;
+}
+
 .piano-keys {
   display: flex;
-  margin-top: 40px;
-}
-.piano-keys .key {
-  cursor: pointer;
-  user-select: none;
-  list-style: none;
-  color: #a2a2a2;
-  position: relative;
-  text-transform: uppercase;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
 }
 
-.piano-keys .white {
+.key {
+  position: relative;
+  list-style: none;
+  text-transform: uppercase;
+  user-select: none;
+  cursor: pointer;
+}
+
+.white {
   width: 70px;
   height: 230px;
-  border: 1px solid black;
-  border-radius: 8px;
   background: linear-gradient(#fff 96%, #eee 4%);
+  border: 1px solid #000;
+  border-radius: 8px;
+  z-index: 1;
 }
 
-.piano-keys .black {
+.black {
   width: 44px;
   height: 140px;
-  z-index: 2;
-  margin: 0 -22px 0 -22px;
-  border: 1px solid black;
-  border-radius: 0 0 5px 5px;
   background: linear-gradient(#333, #000);
+  border-radius: 0 0 5px 5px;
+  border: 1px solid #000;
+  margin-left: -22px;
+  margin-right: -22px;
+  z-index: 2;
 }
 
-.piano-keys span {
+.key span {
   position: absolute;
-  bottom: 20px;
+  bottom: 12px;
   width: 100%;
   text-align: center;
-  font-size: 1.13rem;
+  font-size: 1rem;
+  color: inherit;
+  background-color: transparent;
+  pointer-events: none;
+  transition: color 0.3s ease;
 }
 
-.piano-keys .white.active {
-  box-shadow: inset -5px 5px 20px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(to bottom #fff 0%, #eee 100%);
-}
-
-.piano-keys .black.active {
-  box-shadow: inset -5px 5px 10px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(to bottom #000, #434343);
-}
-
-.piano-keys .key.hide span {
+.key.hide span {
   display: none;
+}
+
+.key.active.white {
+  box-shadow: inset -5px 5px 20px rgba(0,0,0,0.2);
+}
+
+.key.active.black {
+  box-shadow: inset -5px 5px 10px rgba(255,255,255,0.1);
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .white {
+    width: 45px;
+    height: 160px;
+  }
+
+  .black {
+    width: 28px;
+    height: 90px;
+    margin-left: -14px;
+    margin-right: -14px;
+  }
+
+  .key span {
+    font-size: 0.9rem;
+  }
 }
