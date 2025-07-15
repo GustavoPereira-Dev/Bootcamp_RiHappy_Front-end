@@ -36,6 +36,8 @@
 .rpgui-button.hover,
 .rpgui-button:hover {
   background-image: url("../assets/rpg/button-hover.png");
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }
 
 /* button clicked */
@@ -76,6 +78,8 @@
   padding-left: 35px;
   padding-right: 35px;
   overflow: visible;
+
+  position: relative;
 }
 
 /* button hover */
@@ -102,9 +106,9 @@
   background-size: 100% 100%;
   margin: 0 0 0 0;
   left: 0px;
-  float: left;
   margin-left: -46px;
-  margin-top: -5%;
+  position: absolute;
+  top: 0;
 }
 
 .rpgui-button.golden:after {
@@ -118,9 +122,9 @@
   background-size: 100% 100%;
   margin: 0 0 0 0;
   right: 0px;
-  float: right;
+  position: absolute;
+  top: 0;
   margin-right: -46px;
-  margin-top: -5%;
 }
 
 /*

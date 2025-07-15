@@ -103,20 +103,20 @@
           <h3>Entre para o clube de D&D e tenha experiências de <span>outro mundo<span></span></h3>
 
           <div class="form-container">
-            <form>
-              <label for="name">Nome Completo</label>
-              <input type="text" name="name" id="txtName">
+            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScitbVSex4L_251DJifkYI-I8NRt1CRjNfjSp_iWI0UbabfUA/formResponse">
+              <label for="entry.917944539">Nome Completo</label>
+              <input type="text" name="entry.917944539" id="txtName">
           
-              <label for="email">E-mail</label>
-              <input type="email" name="email" id="txtEmail">
+              <label for="entry.679054477">E-mail</label>
+              <input type="email" name="entry.679054477" id="txtEmail">
           
-              <label for="level">Level</label>
-              <input type="text" name="level" id="txtLevel">
+              <label for="entry.1370303968">Level</label>
+              <input type="text" name="entry.1370303968" id="txtLevel">
           
-              <label for="character">Personagem</label>
-              <textarea name="character" cols="30" rows="10" id="txtCharacter"></textarea>
+              <label for="entry.1636832427">Personagem</label>
+              <textarea name="entry.1636832427" cols="30" rows="10" id="txtCharacter"></textarea>
             
-              <button type="button" id="btnSubscribe">Me inscrever</button>
+              <button type="submit" id="btnSubscribe">Me inscrever</button>
             </form>
             
           </div>
@@ -132,9 +132,11 @@
       <img src="./assets/images/footer/logo.svg" alt="">
     </footer>
     
-    <script type="module" src="./assets/js/main.js"></script>
     <script>
-      
+      function switchTheme() {
+        document.body.classList.toggle('dark-theme')
+        document.body.classList.toggle('light-theme')
+      }
     </script>
   </body>
 </html>
