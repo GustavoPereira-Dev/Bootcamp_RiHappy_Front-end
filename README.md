@@ -12,5 +12,5 @@ Possuí projetos com uso de HTML, CSS e JavaScript junto com conteúdos extras e
 - [Yu-Gi-Oh com Jokenpo](./yu-gi-oh/): Jokenpo no estilo de cartas do universo de Yu-Gi-Oh
 - [Piano Virtual](./music-keyboard/): Piano Virtual em que o usuário pode, de forma mais palpável, usar uma espécie de piano com seus sons intactos
 - [Mundo Invertido](./mundo-invertido/): Site com uso de tema escuro e claro, interação de formulário no contexto da série de Stranger Things da Netflix
-- [Multiverso Homem-Aranha](./spider-man-multiverses/)
+- [Multiverso Homem-Aranha](./spider-man-multiverses/): Site do universo e multiverso do Homem-Aranha
 - [Portfolio](https://github.com/GustavoPereira-Dev/Portfolio): Meu Portfólio principal que está sempre sendo atualizado e desenvolvido de tempos e tempos
